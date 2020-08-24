@@ -1,0 +1,71 @@
+.table {
+    max-width: calc(100% - 20rem);
+    margin: 0;
+    background: #fff;
+}
+.table__title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.table__contact {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.table__row {
+    display: flex;
+}
+.table__rang {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.table__protocol {
+    width: 80%;
+}
+.table__gender {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table__gender div {
+    flex-direction: row;
+}
+.table__gender label {
+    margin: 0;
+}
+.gender__male label {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.table__gender .MuiTypography-body1 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: -0.9px;
+    font-weight: 600;
+}
+.table__gender .PrivateSwitchBase-root-1 {
+    padding: 5px;
+}
+.table__gender .MuiSvgIcon-root {
+    width: 0.9em;
+}
+.table__prot {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.tr {
+    border: 1px solid;
+}
