@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, createRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import {
   Checkbox,
   RadioGroup,
   FormControlLabel,
   Radio,
+  FormControl
 } from '@material-ui/core';
 import $ from 'jquery-ajax';
+
 
 const defaultValues = {
   Native: "",
@@ -20,48 +22,43 @@ const defaultValues = {
   downShift: "apple"
 };
 
-// const isGithubUserExist = async () => {
-//   const res = await fetch(`https://api.github.com/users/Zhenikusss`);
-//   if (res.status === 200) {
-//     const data = await res.json();
-//     console.log(data);
-//     // setUserPhoto(data.avatar_url);
-//     return true;
-//   }
-//   return false;
-// }
-
-// isGithubUserExist();
-
 function Table () {
   const { handleSubmit, register, reset, control } = useForm({ defaultValues });
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState([]);
+  const [value, setValue] = useState('');
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    console.log(value);
+  };
+
+  useEffect(() => {
+    fetch('http://localhost:3001')
+    .then(response => response.json())
+    .then(json => {
+      setValue(json[json.length - 1].gender)
+      console.log(json[json.length - 1].gender);
+      
+    })
+  }, []);
 
   return (
     <div>
-    
-        <form onSubmit={handleSubmit(data => {
-            setData(data);
-            console.log(data);
 
-            let jsonData = JSON.stringify(data);
+        <form onSubmit={(event => {
+            event.preventDefault();
 
-            console.log(jsonData);
+            console.log(value);
 
             $.ajax ({
               
               type:'POST',
-              url:'index.php',
+              url:'http://localhost:3001',
               dataType:'json',
-              data:'param=' + jsonData,
-              success:function(html) {
-                console.log('Переданное значение ' + html)
-              }
-
+              data:'gender=' + value
             });
-
-
           })}
+
         className="form table tr">
 
           <div className = 'table__title'>Белорусская федерация гандбола</div>
@@ -76,10 +73,12 @@ function Table () {
             <div className = 'table__protocol'>
                 <div className = 'table__row'>
 
+                
+
                   <section className = 'table__gender tr'>
-                   <Controller
-                     as={
-                       <RadioGroup aria-label="gender">
+
+                       <RadioGroup aria-label="gender" value={value} onChange={handleChange}>
+
                         <div className = 'gender__male'>
                          <FormControlLabel
                            value="male"
@@ -97,11 +96,8 @@ function Table () {
                         </div>
 
                        </RadioGroup>
-                     }
-                     name="RadioGroup"
-                     control={control}
-                    />
                   </section>
+
 
                   <div className = 'table__prot tr'>Протокол матча</div>
                   
@@ -131,6 +127,10 @@ function Table () {
     </form>
     </div> 
   );
+
+  
 }
+
+
 
 export default Table;
