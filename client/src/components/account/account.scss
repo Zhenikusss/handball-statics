@@ -1,0 +1,180 @@
+.header {
+    height: 200px;
+    width: 100%;
+    background: url('../../assets/img/background.jpg');
+    background-size: cover;
+    &__logo {
+        max-width: 1400px;
+        margin: 0 auto;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        img {
+            margin-left: 70px;
+        }
+    }
+}
+.login-title {
+    background: url('../../assets/img/account-bg.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.account {
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    max-width: 1400px;
+    margin: 0 auto;
+    &__save--team {
+        display: flex;
+    }
+    &__save--team a:nth-child(2),
+    &__save--team a:nth-child(3) {
+        margin-left: 20px;
+    }
+    &__teh {
+        color: #fff;
+        border: none;
+        background: #414D55;
+        border-radius: 8px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        text-transform: uppercase;
+        padding: 14px 20px;
+    }
+    &__exit {
+        color: #fff;
+        border: none;
+        background: #ED0423;
+        border-radius: 8px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+    }
+    &__teamA {
+        font-weight: bold;
+    }
+    &__func {
+        display: flex;
+        justify-content: space-between;
+        margin: 40px 0;
+    }
+    &__func a {
+        text-decoration: none;
+    }
+    &__func_table {
+        justify-content: flex-end;
+    }
+    &__func button {
+        width: 10rem;
+        margin: 0;
+        margin-left: 1rem;
+        padding: 14px 20px;
+    
+        &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+    }
+    &__save button {
+        margin-left: 0;
+        margin-top: 0;
+        color: #fff;
+        border: none;
+        background: #7ED321;
+        border-radius: 8px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+    }
+    &__games {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__block {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 40px;
+        margin-bottom: 100px;
+    }
+    &__block a {
+        width: 100%;
+        text-decoration: none;
+        display: flex;
+    }
+    &__item {
+        width: 320px;
+        color: #292B23;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0,0,0,.04);
+        transition: 0.2s;
+        font-family: Montserrat;
+        font-size: 24px;
+        line-height: 20px;
+        font-style: normal;
+        border: 1px solid #E0E5D4;
+        box-sizing: border-box;
+        border-radius: 4px;
+        height: 185px;
+    
+        &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+            box-shadow: 0 14px 28px #0000001a, 0 10px 10px #0000001a;
+        }
+    }
+    &__name {
+        height: 104px;
+        padding: 18px 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__close {
+        display: flex;
+    }
+    &__close button {
+        margin-right: 0.5rem;
+        width: auto;
+        margin: 0;
+        margin-left: 1rem;
+    }
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+    &__date {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        border-top: 1px solid #E0E5D5;
+        height: 44px;
+        padding: 0px 28px;
+        align-items: center;
+        font-family: Open Sans;
+        font-style: normal;
+        line-height: 20px;
+    }
+    &__time {
+        color: #6F8738;
+        font-weight: 600;
+    }
+    &__day {
+        font-weight: normal;
+        letter-spacing: 0.1px;
+        color: #585954;
+    }
+}

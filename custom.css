@@ -1,0 +1,67 @@
+@media(max-width: 1439px) {
+	.account,
+	.teams {
+		max-width: 1000px;
+	}
+	.account__block {
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-gap: 20px;
+	}
+}
+
+@media(max-width: 1039px) {
+	.account,
+	.teams {
+		max-width: 660px;
+	}
+	.account__block {
+		grid-template-columns: 1fr 1fr;
+	}
+	.account__func button {
+		padding: 7px 10px;
+		width: auto;
+		font-size: 14px;
+	}
+	.account__exit, 
+	.account__teh {
+		font-size: 14px;
+		padding: 7px 10px;
+	}
+	.teams__item.MuiListItem-button {
+		width: 50%;
+	}
+}
+
+@media(max-width: 699px) {
+	.account,
+	.teams {
+		max-width: 320px;
+	}
+	.account__block {
+		grid-template-columns: 1fr;
+	}
+	.account__func {
+		flex-wrap: wrap;
+	}
+	.account__func button,
+	.account__save--team,
+	.account__func a,
+	.account__close {
+		width: 100%;
+		flex-wrap: wrap;
+		text-align: center;
+		border-radius: 0;
+    	margin-bottom: 5px;
+	}
+	.account__save--team a:last-child,
+	.account__close button,
+	.account__func button {
+		margin: 0;
+	}
+	.account__close {
+		margin-top: 15px;
+	}
+	.teams__item.MuiListItem-button {
+    	width: 100%;
+	}
+}

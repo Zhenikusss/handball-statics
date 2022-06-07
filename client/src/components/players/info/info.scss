@@ -1,0 +1,48 @@
+.info-players__team {
+    width: 5%;
+    // padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.info-players__title {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    // padding: 0.5rem;
+}
+.table__col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5%;
+    padding: 0 0.5rem 0.5rem;
+}
+.table__col:first-child {
+    width: 40px;
+}
+.table__col:nth-child(2) {
+    width: 55%;
+}
+.table__row.col {
+    flex-direction: column;
+}
+.table__row.col .table__col {
+    width: 40px;
+}
+.info-players__table {
+    width: 100%;
+}
+.info-players__table td {
+    width: 0.5rem;
+    padding: 0 0.5rem 0.3rem;
+}
+.MuiInputBase-input {
+    padding: 3px 3px !important;
+}
+.info-players__table .MuiFormControl-root {
+    width: 100%;
+}
+.info-players__table .MuiSelect-selectMenu {
+    white-space: initial;
+}

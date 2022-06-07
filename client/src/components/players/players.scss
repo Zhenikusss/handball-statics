@@ -1,0 +1,19 @@
+.players-all {
+    display: flex;
+}
+.players-match {
+    width: 10%;
+}
+.players-info {
+    width: 90%;
+}
+.referee-right {
+    width: 20%;
+}
+.table-players__team {
+    width: 80%;
+}
+.player__table {
+    max-height: 500px;
+    overflow-y: scroll;
+}

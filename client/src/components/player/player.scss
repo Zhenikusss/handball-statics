@@ -1,0 +1,31 @@
+.player__str {
+    display: flex;
+}
+.player__str span {
+    width: 100%;
+    border: 1px solid;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+}
+.player__kick_block {
+    flex-direction: column;
+}
+.player__kick, .player__edit {
+    cursor: pointer;
+    padding: 10px 0px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+.player__kick {
+    margin-top: 5px;
+    background-color: #ED0423;
+}
+.player__edit {
+    background-color: #414D55;
+}
+.teams__save .MuiFormControl-root {
+    margin-right: 20px;
+}

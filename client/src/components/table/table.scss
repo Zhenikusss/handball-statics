@@ -1,0 +1,211 @@
+.table {
+    max-width: 100%;
+    margin: 0;
+    background: #fff;
+    &__block {
+        position: relative;
+    }
+}
+.table__title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.table__contact {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.table__row {
+    display: flex;
+}
+.table__rang {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.table__protocol {
+    width: 80%;
+}
+.table__rul {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table__rul div {
+    flex-direction: row;
+}
+.table__rul label {
+    margin: 0;
+}
+.gender__male label {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.table__rul .MuiTypography-body1 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: -0.9px;
+    font-weight: 600;
+}
+.table__rul .PrivateSwitchBase-root-1 {
+    padding: 5px;
+}
+.table__rul .MuiSvgIcon-root {
+    width: 0.9em;
+}
+.table__prot {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.tr {
+    border: 1px solid;
+}
+.table__tournament {
+    width: 100%;
+}
+.table__tournament > div {
+    width: 100%;
+    justify-content: space-around;
+}
+.team {
+    width: 70%;
+    display: flex;
+    &__item {
+        width: 50%;
+    }
+    &__name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+}
+.result {
+    display: flex;
+    width: 30%;
+    &__team {
+        width: 30%;
+        padding: 0.5rem;
+    }
+    &__title {
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        // transform: rotate(-25deg);
+        font-size: 14px;
+        padding: 0.1rem;
+    }
+}
+.team__item .team__title {
+    justify-content: center;
+}
+.team__item .team__title-A,
+.team__item .team__title-B {
+    padding: 1rem;
+    border-right: 1px solid;
+}
+.info-match {
+    &__city {
+        width: 25%;
+        padding: 0.5rem;
+    }
+    &__place {
+        width: 45%;
+        padding: 0.5rem;
+    }
+    &__date {
+        width: 15%;
+        padding: 0.5rem;
+    }
+    &__time {
+        width: 15%;
+        padding: 0.5rem;
+    }
+}
+.info-match button[type="button"],
+.MuiPickersBasePicker-pickerView button[type="button"],
+.MuiPickersTimePickerToolbar-hourMinuteLabel button[type="button"] {
+    background: none;
+    padding: 0.5rem;
+}
+.MuiPickersBasePicker-pickerView p::before {
+    display: none;
+}
+.MuiPickersBasePicker-pickerView .MuiPickersDay-daySelected {
+    color: #3f51b5;
+    font-weight: 600;
+}
+.yellow {
+    background: #ffff0057;
+}
+.green {
+    background: #b6feb9;
+}
+.blue {
+    background: #afb4ffa8;
+}
+.btn-save {
+    cursor: pointer;
+    width: 10rem;
+    margin: 0;
+    margin-left: 1rem;
+    border: 1px solid #333;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background-color: #F2F2F2;
+    font: 400 13.3333px Arial;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.disabled-table {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    background: #fff;
+    opacity: 0.4;
+}
+
+@media print {
+    .account__func_table {display: none;}
+    @page {
+        margin: 2mm;
+        margin-bottom: 0mm;
+        margin-top: 5mm;
+    }
+    html { zoom: 63%; }
+
+    *,
+    *:before,
+    *:after,
+    *:first-letter,
+    p:first-line,
+    div:first-line,
+    blockquote:first-line,
+    li:first-line {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+}

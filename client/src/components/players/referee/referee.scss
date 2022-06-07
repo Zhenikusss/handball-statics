@@ -1,0 +1,42 @@
+.players-referee__spectators {
+    display: flex;
+}
+.players-referee__spectators > div {
+    padding: 0.5rem;
+}
+label.MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated {
+    font-size: 12px;
+}
+.protests.table__rul {
+    width: calc(100% - 2px);
+    flex-wrap: wrap;
+    text-align: center;
+}
+.protests > div {
+    width: 100%;
+    justify-content: center;
+    
+}
+.players-referee__comments {
+    padding: 0.5rem;
+    flex-grow: 1;
+}
+.players-referee__comments > div {
+    width: 100%;
+}
+.players-referee__num > div {
+    padding: 0.5rem;
+}
+.players-referee__signature.tr {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-size: 13px;
+    height: 3rem;
+}
+.players-referee__block {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

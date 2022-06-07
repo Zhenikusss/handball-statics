@@ -1,0 +1,80 @@
+.teams {
+    height: auto;
+    max-width: 1400px;
+    margin: 0 auto;
+    &__save {
+        display: flex;
+        margin: 50px 0;
+    }
+    &__save button {
+        color: #fff;
+        border: none;
+        background: #414D55;
+        border-radius: 0px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        text-transform: uppercase;
+        padding: 10px 20px;
+        margin: 0 20px;
+        cursor: pointer;
+    }
+    &__block {
+        display: flex;
+        flex-wrap: wrap;
+        opacity: 0;
+        transition: 0.5s;
+    }
+    &__block.show {
+        opacity: 1;
+    }
+    &__item.MuiListItem-button {
+        border-left: 1px solid #414d55;
+        width: 20%;
+        cursor: initial;
+        margin-bottom: 20px;
+    }
+    &__button--back {
+        color: #fff;
+        border: none;
+        background: #ED0423;
+        border-radius: 8px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        cursor: pointer;
+    }
+    &__buttons button {
+        margin: 0;
+    }
+    &__link {
+        text-decoration: none;
+    }
+    &__buttons {
+        display: flex;
+    }
+    &__buttons button:hover {
+        opacity: 0.8;
+    }
+    &__button--save {
+        color: #fff;
+        border: none;
+        background: #7ED321;
+        border-radius: 8px;
+        font-family: Montserrat;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        cursor: pointer;
+        margin-left: 20px !important;
+    }
+    &__icon {
+        float: right;
+        cursor: pointer;
+    }
+}
