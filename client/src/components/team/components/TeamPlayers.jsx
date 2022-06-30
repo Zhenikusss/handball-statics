@@ -7,7 +7,7 @@ const TeamPlayers = ({  }) => {
   const [players, setPlayers] = useState([
     {
       id: '1',
-      name: 'Kozak',
+      name: 'test',
       gender: 'male',
       number: '9',
       team: 'BATE',

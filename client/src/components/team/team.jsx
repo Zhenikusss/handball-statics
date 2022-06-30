@@ -104,12 +104,8 @@ const Team = () => {
     })
   }
 
-  console.log(teams);
-
   return(
     <Fragment>
-      <TeamPlayers />
-
       <div className="header">
         <div className="header__logo">
           <img src={logo} alt={logo} />
