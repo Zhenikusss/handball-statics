@@ -30,21 +30,22 @@ app.use(express.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname)));
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-app.use('/', indexRouter);
+app.use('/data', indexRouter);
 app.use('/matches', matchesRouter);
-app.use('/auth', usersRouter);
 app.use('/teams', teamsRouter);
 app.use('/players', playersRouter);
 app.use('/statistic-goals', statisticGoals);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'auth', 'index.html'));
 });
+
+app.use('/auth', usersRouter);
+
+// catch 404 and forward to error handler
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
