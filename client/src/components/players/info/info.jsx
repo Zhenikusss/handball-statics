@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Controller } from "react-hook-form";
 import { 
     TextField,
     FormControl,
-    MenuItem
+    MenuItem,
 } from '@material-ui/core';
 
 function Info (props) {
@@ -95,15 +95,20 @@ function Info (props) {
                                           name={'teamPlayer' + (index+1) + props.team} 
                                           onChange={(event) => {
                                             handleChangeInfo(event);
-                                          }} 
+                                          }}
                                         >
 
-                                        {players.map((option) => (
-                                          <MenuItem key={option.id} value={option.name}>
-                                            {option.name}
-                                          </MenuItem>
-                                        ))}
+                                        <MenuItem divider={true} value="">
+                                          <em>Пусто</em>
+                                        </MenuItem>
 
+                                        {players.map((option) => {
+                                          return (
+                                            <MenuItem divider={true} key={option.id} value={option.name}>
+                                              {option.name}
+                                            </MenuItem>
+                                          )}
+                                        )}
                                         </TextField>
                                       </FormControl>
                                     }

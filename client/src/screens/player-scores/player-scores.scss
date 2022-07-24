@@ -1,0 +1,35 @@
+.MuiTablePagination-spacer {
+  display: none !important;
+}
+.MuiTablePagination-toolbar {
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  justify-content: end !important;
+}
+.MuiTablePagination-input {
+  display: none !important;
+}
+
+.MuiTablePagination-actions {
+  display: flex;
+}
+
+.MuiTablePagination-caption:nth-child(2),
+.MuiTablePagination-caption:nth-child(4)::before {
+  display: none !important;
+}
+
+.MuiIconButton-root {
+  color: rgba(0, 0, 0, 0.54) !important;
+  padding: 12px !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+}
+
+.progress-table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+}

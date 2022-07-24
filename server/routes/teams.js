@@ -66,7 +66,6 @@ router.post('/', function(req, res) {
   }
 
   function insertTable(name, value) {
-    console.log(name, value);
     const insertInto = `REPLACE INTO info_team (${name}) VALUES (${value})`;
   
     sql.query(insertInto, function (err, result) {

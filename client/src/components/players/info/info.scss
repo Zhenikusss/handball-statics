@@ -46,3 +46,13 @@
 .info-players__table .MuiSelect-selectMenu {
     white-space: initial;
 }
+
+ul.MuiMenu-list {
+    overflow-y: scroll;
+    max-height: 500px;
+    padding: 0;
+}
+
+li.MuiMenuItem-root {
+    min-height: 30px;
+}

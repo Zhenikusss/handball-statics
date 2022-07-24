@@ -38,8 +38,8 @@ const Player = () => {
   useEffect(() => {
     $.ajax ({
       type:'GET',
-      // url:`${protocol}//handball.devitgso.iron.hostflyby.net/players`,
-      url:'http://localhost:3001/players',
+      url:`${protocol}//handball.devitgso.iron.hostflyby.net/players`,
+      // url:'http://localhost:3001/players',
       dataType:'json',
       success: function(data) {
         data.map((item) => {
@@ -61,8 +61,8 @@ const Player = () => {
     });
     $.ajax ({
       type:'GET',
-      // url:`${protocol}//handball.devitgso.iron.hostflyby.net/teams`,
-      url:'http://localhost:3001/teams',
+      url:`${protocol}//handball.devitgso.iron.hostflyby.net/teams`,
+      // url:'http://localhost:3001/teams',
       dataType:'json',
       success: function(data) {
         setTeam(data);
@@ -143,8 +143,8 @@ const Player = () => {
     // console.log('click save', players)
     $.ajax ({
       type:'POST',
-      // url:`${protocol}//handball.devitgso.iron.hostflyby.net/players`,
-      url:'http://localhost:3001/players',
+      url:`${protocol}//handball.devitgso.iron.hostflyby.net/players`,
+      // url:'http://localhost:3001/players',
       dataType:'json',
       data: { players },
       success: function() {

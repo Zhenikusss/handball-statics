@@ -503,7 +503,7 @@ function Table () {
           }
         });
       } else {
-        console.log('не существует')
+        console.warn('не существует')
       }
       
       setTableInfo((data) => ({
@@ -540,8 +540,8 @@ function Table () {
     const popupWindow = document.querySelector('.popup-window');
     $.ajax ({
       type:'POST',
-      // url:`${protocol}//handball.devitgso.iron.hostflyby.net/data`,
-      url:'http://localhost:3001',
+      url:`${protocol}//handball.devitgso.iron.hostflyby.net/data`,
+      // url:'http://localhost:3001/data',
       dataType:'json',
       data: { tableInfo, pathHash },
       success: function() {
@@ -561,8 +561,8 @@ function Table () {
   useEffect(() => {
     $.ajax ({      
       type:'GET',
-      // url:`${protocol}//handball.devitgso.iron.hostflyby.net/data`,
-      url:'http://localhost:3001',
+      url:`${protocol}//handball.devitgso.iron.hostflyby.net/data`,
+      // url:'http://localhost:3001/data',
       dataType:'json',
       data: pathHash,
       success: function(data) {
@@ -577,8 +577,8 @@ function Table () {
 
     $.ajax ({      
       type:'GET',
-      // url:`${protocol}//handball.devitgso.iron.hostflyby.net/teams`,
-      url:'http://localhost:3001/teams',
+      url:`${protocol}//handball.devitgso.iron.hostflyby.net/teams`,
+      // url:'http://localhost:3001/teams',
       dataType:'json',
       success: function(data) {
         setTeam(data);
@@ -589,8 +589,8 @@ function Table () {
   useEffect(() => {
     $.ajax ({   
       type:'GET',
-      // url:`${protocol}//handball.devitgso.iron.hostflyby.net/players?team=${teamA}`,
-      url:`http://localhost:3001/players?team=${teamA}`,
+      url:`${protocol}//handball.devitgso.iron.hostflyby.net/players?team=${teamA}`,
+      // url:`http://localhost:3001/players?team=${teamA}`,
       dataType:'json',
       success: function(data) {
         setPlayersA(data)
@@ -599,8 +599,8 @@ function Table () {
 
     $.ajax ({   
       type:'GET',
-      // url:`${protocol}//handball.devitgso.iron.hostflyby.net/players?team=${teamB}`,
-      url:`http://localhost:3001/players?team=${teamB}`,
+      url:`${protocol}//handball.devitgso.iron.hostflyby.net/players?team=${teamB}`,
+      // url:`http://localhost:3001/players?team=${teamB}`,
       dataType:'json',
       success: function(data) {
         setPlayersB(data)
