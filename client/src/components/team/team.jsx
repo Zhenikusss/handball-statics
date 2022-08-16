@@ -24,8 +24,8 @@ const Team = () => {
   useEffect(() => {
     $.ajax ({      
       type:'GET',
-      // url:`${protocol}//handball.devitgso.iron.hostflyby.net/teams`,
-      url:'http://localhost:3001/teams',
+      url:`${protocol}//handball.devitgso.iron.hostflyby.net/teams`,
+      // url:'http://localhost:3001/teams',
       dataType:'json',
       success: function(data) {
         data.map((item) => {
@@ -49,8 +49,8 @@ const Team = () => {
   const saveTeam = () => {
     $.ajax ({
       type:'POST',
-      // url:`${protocol}//handball.devitgso.iron.hostflyby.net/teams`,
-      url:'http://localhost:3001/teams',
+      url:`${protocol}//handball.devitgso.iron.hostflyby.net/teams`,
+      // url:'http://localhost:3001/teams',
       dataType:'json',
       data: { teams },
       success: function() {

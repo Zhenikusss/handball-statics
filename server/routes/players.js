@@ -20,8 +20,6 @@ router.get('/', function(req, res) {
 
   const team = req.query;
 
-  console.log(team)
-
   sql.connect(function(err) {
     if (err) throw err;
   });

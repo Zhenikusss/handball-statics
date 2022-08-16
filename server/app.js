@@ -10,18 +10,19 @@ const usersRouter = require('./routes/users');
 const matchesRouter = require('./routes/matches');
 const teamsRouter = require('./routes/teams');
 const playersRouter = require('./routes/players');
+const statisticScore = require('./routes/statistic-score');
 const statisticGoals = require('./routes/statistic-goals');
-
-// var bodyParser = require('body-parser');
-// app.use(bodyParser.json({limit: '50mb'}));
-// app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit: 1000000}));
-
+const audiences = require('./routes/audiences');
 
 const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+// var bodyParser = require('body-parser');
+// app.use(bodyParser.json({limit: '50mb'}));
+// app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit: 1000000}));
 
 app.use(cors());
 app.use(logger('dev'));
@@ -34,7 +35,9 @@ app.use('/data', indexRouter);
 app.use('/matches', matchesRouter);
 app.use('/teams', teamsRouter);
 app.use('/players', playersRouter);
+app.use('/statistic-score', statisticScore);
 app.use('/statistic-goals', statisticGoals);
+app.use('/audiences', audiences);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'auth', 'index.html'));

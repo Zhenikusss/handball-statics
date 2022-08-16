@@ -20,8 +20,6 @@ router.get('/', function(req, res) {
 
     const year = new Date().getFullYear();
     const team = req.query;
-
-    console.log(team);
   
     sql.connect(function(err) {
       if (err) throw err;
@@ -97,8 +95,6 @@ router.get('/', function(req, res) {
       });
     }
 
-    
-  
     sql.end();
     
   });

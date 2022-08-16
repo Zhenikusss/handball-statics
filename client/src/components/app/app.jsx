@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
-import Account from '../account';
-import Login from '../login';
-import Table from '../table';
-import Team from '../team';
-import Player from '../player';
 import $ from 'jquery-ajax';
-
-import './app.scss';
-
 import { 
   BrowserRouter as Router,
   Route,
   Redirect,
   Switch
 } from 'react-router-dom';
+
+import './app.scss';
+import Account from '../account';
+import Login from '../login';
+import Table from '../table';
+import Team from '../team';
+import Player from '../player';
+import PlayerScores from '../../screens/player-scores';
+import Audience from '../../screens/audience';
 
 const App = () => {
   const [valueLogin, setLogin] = useState(false);
@@ -28,8 +29,8 @@ const App = () => {
     $.ajax ({
               
       type:'POST',
-      // url:`${protocol}//handball.devitgso.iron.hostflyby.net/authh`,
-      url:'http://localhost:3001/auth',
+      url:`${protocol}//handball.devitgso.iron.hostflyby.net/authh`,
+      // url:'http://localhost:3001/auth',
       dataType:'json',
       data: {
         'admin': getLogin,
@@ -75,6 +76,12 @@ const App = () => {
           </Route>
           <Route path="/player">
             <Player />
+          </Route>
+          <Route path="/player-scores">
+            <PlayerScores />
+          </Route>
+          <Route path="/audience">
+            <Audience />
           </Route>
           <Redirect to="/account" />
         </Switch>

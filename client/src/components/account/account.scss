@@ -30,8 +30,10 @@
     &__save--team {
         display: flex;
     }
-    &__save--team a:nth-child(2),
-    &__save--team a:nth-child(3) {
+    &__save--team a:first-child {
+        margin-left: 0px;
+    }
+    &__save--team a {
         margin-left: 20px;
     }
     &__teh {
@@ -96,6 +98,20 @@
         font-size: 16px;
         line-height: 20px;
     }
+    &__btns {
+        color: #fff !important;
+
+        &:hover {
+            opacity: 0.4;
+            transition: 0.3s;
+        }
+    }
+    &__green {
+        background: #7ED321 !important;
+    }
+    &__red {
+        background: #ED0423 !important;
+    }
     &__games {
         display: flex;
         justify-content: space-between;
@@ -103,16 +119,39 @@
     &__block {
         display: grid;
         width: 100%;
+        grid-template-columns: 1fr;
+        grid-gap: 15px;
+        margin-bottom: 100px;
+    }
+    &__client {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: 40px;
         margin-bottom: 100px;
     }
     &__block a {
         width: 100%;
+        color: #292B23;
+        background: #fff;
+        box-shadow: 0 1px 3px rgba(0,0,0,.04);
+        transition: 0.2s;
+        font-family: Montserrat;
+        font-size: 18px;
+        line-height: 20px;
+        font-style: normal;
+        border: 1px solid #E0E5D4;
+        box-sizing: border-box;
+        border-radius: 4px;
+        padding: 10px;
         text-decoration: none;
-        display: flex;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.8;
+            box-shadow: 0 14px 28px #0000001a, 0 10px 10px #0000001a;
+        }
     }
-    &__item {
+
+    &__client a {
         width: 320px;
         color: #292B23;
         background: #fff;
@@ -125,13 +164,25 @@
         border: 1px solid #E0E5D4;
         box-sizing: border-box;
         border-radius: 4px;
+        text-decoration: none;
+        padding: 0;
         height: 185px;
-    
+
         &:hover {
             cursor: pointer;
             opacity: 0.8;
             box-shadow: 0 14px 28px #0000001a, 0 10px 10px #0000001a;
         }
+    }
+    &__item {
+        width: 100%;
+        text-decoration: none;
+        display: flex;
+        position: relative;
+        align-items: center;
+    }
+    &__client_item {
+        flex-wrap: wrap;
     }
     &__name {
         height: 104px;
@@ -139,6 +190,16 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+    }
+    &__client_name {
+        width: 100%;
+    }
+    &__client_date {
+        width: 100%;
+    }
+    &__icon {
+        position: absolute;
+        right: 24px;
     }
     &__close {
         display: flex;
@@ -177,4 +238,43 @@
         letter-spacing: 0.1px;
         color: #585954;
     }
+}
+
+.textBtnMenu .MuiTypography-body1,
+.textNameMenu {
+    color: #292B23;
+    font-family: Montserrat;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.textNameMenu {
+    // color: #fff;
+    margin-left: 10px;
+}
+
+.urlBtnMenu {
+    text-decoration: none;
+}
+
+.headerMenu {
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.headerMenu .MuiAppBar-colorPrimary {
+    background-color: #3f51b500;
+}
+
+.headerMenu .account__close {
+    position: absolute;
+    right: 10px;
+}
+.headerMenu .account__teh {
+    text-decoration: none;
+}
+.headerMenu .account__exit:hover {
+    cursor: pointer;
 }
