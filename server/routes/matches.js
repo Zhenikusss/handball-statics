@@ -26,8 +26,9 @@ router.get('/', function(req, res) {
   const season = Number(params.season);
   const tournament = params.tournament;
   const gender = params.gender;
+  const division = params.division;
 
-  const sqlData = `SELECT id, teamA, teamB, date, time, tournament, 
+  const sqlData = `SELECT id, teamA, teamB, date, time, tournament, division,
     gender, resultGameA, resultGameB, resultGame30A, 
     resultGame30B FROM info_table`;
 
@@ -37,12 +38,20 @@ router.get('/', function(req, res) {
     } 
     if (!!gender) {
       result = result.filter((item) => item.gender === gender);
+    }
+    if (!!division) {
+      result = result.filter((item) => item.division === division);
     } 
     if (!!season) {
-      result = result.filter((item) => 
-        Number(item.date.substring(0, 4).trim()) === season || 
-        Number(item.date.substring(0, 4).trim()) === season + 1
-      );
+      result = result.filter((item) => {
+        const date = item.date.split('-');
+        const year = Number(date[0]);
+        const month = Number(date[1]);
+
+        if ((year === season && month > 7) || (year === season + 1 && month < 7)) {
+          return item;
+        }
+      });
     }
     if (err) throw err;
     res.json(result);
@@ -72,8 +81,9 @@ router.post('/', function(req, res) {
     const season = Number(params.season);
     const tournament = params.tournament;
     const gender = params.gender;
+    const division = params.division;
 
-    const sqlData = `SELECT id, teamA, teamB, date, time, tournament, 
+    const sqlData = `SELECT id, teamA, teamB, date, time, tournament, division,
       gender, resultGameA, resultGameB, resultGame30A, 
       resultGame30B FROM info_table`;
 
@@ -83,12 +93,20 @@ router.post('/', function(req, res) {
       } 
       if (!!gender) {
         result = result.filter((item) => item.gender === gender);
+      }
+      if (!!division) {
+        result = result.filter((item) => item.division === division);
       } 
       if (!!season) {
-        result = result.filter((item) => 
-          Number(item.date.substring(0, 4).trim()) === season || 
-          Number(item.date.substring(0, 4).trim()) === season + 1
-        );
+        result = result.filter((item) => {
+          const date = item.date.split('-');
+          const year = Number(date[0]);
+          const month = Number(date[1]);
+
+          if ((year === season && month > 7) || (year === season + 1 && month < 7)) {
+            return item;
+          }
+        });
       }
       if (err) throw err;
       res.json(result);

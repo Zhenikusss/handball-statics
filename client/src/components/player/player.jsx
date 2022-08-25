@@ -8,6 +8,8 @@ import PlayerString from './components/player';
 // import AddPlayer from './components/add-player';
 import { defaultGenders } from './constants/default';
 
+import { requestUrl } from '../../const/const';
+
 const Player = () => {
   const [modal, setModal] = useState({
     open: false,
@@ -33,13 +35,10 @@ const Player = () => {
     team: teamDefault
   });
 
-  let protocol = window.location.protocol;
-
   useEffect(() => {
     $.ajax ({
       type:'GET',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/players`,
-      // url:'http://localhost:3001/players',
+      url: `${requestUrl}/players`,
       dataType:'json',
       success: function(data) {
         data.map((item) => {
@@ -61,8 +60,7 @@ const Player = () => {
     });
     $.ajax ({
       type:'GET',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/teams`,
-      // url:'http://localhost:3001/teams',
+      url: `${requestUrl}/teams`,
       dataType:'json',
       success: function(data) {
         setTeam(data);
@@ -140,11 +138,9 @@ const Player = () => {
   };
 
   const savePlayer = () => {
-    // console.log('click save', players)
     $.ajax ({
       type:'POST',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/players`,
-      // url:'http://localhost:3001/players',
+      url: `${requestUrl}/players`,
       dataType:'json',
       data: { players },
       success: function() {
@@ -154,10 +150,21 @@ const Player = () => {
         });
       },
       error: function(xhr, ajaxOptions, thrownError) {
-        // console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
       }
     });
   }
+
+  useEffect(() => {
+    players.sort((a, b) => {
+      if (a.team > b.team) {
+          return 1;
+      } else if (a.team < b.team) {
+          return -1;
+      } else {
+          return 0;
+      }
+    });
+  }, [players]);
 
   return(
     <Fragment>

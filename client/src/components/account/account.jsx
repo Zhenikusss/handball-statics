@@ -9,7 +9,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import './account.scss';
 import Drawer from '@material-ui/core/Drawer';
 import logo from '../../assets/img/logo.svg';
-import Typography from '@material-ui/core/Typography';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { Button, Tooltip, Dialog, DialogActions, DialogTitle, } from '@material-ui/core';
 import SelectorMatches from '../selector-matches/selectorMatches';
@@ -18,6 +17,8 @@ import { selectedMatches } from './const';
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+
+import { requestUrl } from '../../const/const';
 
 function Account (props) {
   const [loading, setLoading] = useState({
@@ -32,11 +33,12 @@ function Account (props) {
     season: '',
     tournament: '',
     gender: '',
-    // division: '',
+    division: '',
   });
 
+  const [dataSelected, setDataSelected] = useState(selectedMatches);
+
   let userGroup = localStorage.getItem('UsersGroup');
-  let protocol = window.location.protocol;
 
   const handleDrawerOpen = () => {
     setMenuOpen(true);
@@ -58,11 +60,9 @@ function Account (props) {
   };
 
   const handleShowPress = () => {
-    // alert('click');
     $.ajax ({
       type:'POST',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/matches`,
-      // url:'http://localhost:3001/matches',
+      url: `${requestUrl}/matches`,
       dataType:'json',
       data: { params: selected },
       success: function(data) {
@@ -128,8 +128,7 @@ function Account (props) {
     } else {
       $.ajax ({
         type:'POST',
-        url:`${protocol}//handball.devitgso.iron.hostflyby.net/matches`,
-        // url:'http://localhost:3001/matches',
+        url: `${requestUrl}/matches`,
         dataType:'json',
         data: { id: idMatch },
         success: function() {
@@ -137,7 +136,6 @@ function Account (props) {
           window.location.reload();
         },
         error: function(xhr, ajaxOptions, thrownError) {
-          // console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
         }
       });
     }
@@ -150,17 +148,33 @@ function Account (props) {
   useEffect(() => {
     $.ajax ({      
       type:'GET',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/matches`,
-      // url:'http://localhost:3001/matches',
+      url: `${requestUrl}/matches`,
       dataType:'json',
       success: function(data) {
         setMatchItem(data);
         setLoading({loading: false});
       }
     });
+
+    $.ajax ({      
+      type:'GET',
+      url: `${requestUrl}/seasons`,
+      dataType:'json',
+      success: function(data) {
+        setDataSelected(prevState => {
+          return [
+            {
+              title: {value: 'season', name: 'Сезон'},
+              options: data,
+            },
+            ...prevState,
+          ];
+        });
+      }
+    });
+
     setTimeout(getMatches, 1000);
   }, []);
-
 
   if (loading.loading) {
 
@@ -182,7 +196,9 @@ function Account (props) {
         <div className="account">
 
           <div className="account__games">
-          {userGroup === 'admin' ? <div className="account__block">
+
+          {!matchItem.length ? 'Ничего не найдено' :
+            userGroup === 'admin' ? <div className="account__block">
               {matchItem.map((anObjectMapped, index) =>
                 <div key={index + anObjectMapped.id} className="account__item">
                   <Link to={{
@@ -223,7 +239,6 @@ function Account (props) {
                   </Link>
               )}
             </div>
-            
           }
 
             <Dialog
@@ -245,7 +260,7 @@ function Account (props) {
 
           {userGroup === 'admin' ?
             <div className='selector'>
-              {selectedMatches.map((item, i) => {
+              {dataSelected.map((item, i) => {
                 return (
                   <div key={i} className='selector__block'>
                     <SelectorMatches title={item.title} options={item.options} onPress={handleSelectPress} />
@@ -259,7 +274,7 @@ function Account (props) {
           
           
 
-              {userGroup === 'admin' &&
+              {userGroup === 'admin' ?
                 <div className='headerMenu'>
                     <AppBar position="static">
                       <Toolbar>
@@ -297,7 +312,15 @@ function Account (props) {
                             hash: Date.now().toString(),
                             state: { createTable: true }
                           }} >
-                            <ListItemText className={'textBtnMenu'} primary={'Создать'} />
+                            <ListItemText className={'textBtnMenu'} primary={'Создать матч'} />
+                          </Link>
+                        </ListItem>
+
+                        <ListItem button >
+                          <Link className={'urlBtnMenu'} to={{
+                            pathname: "/season",
+                          }} >
+                            <ListItemText className={'textBtnMenu'} primary={'Сезоны'} />
                           </Link>
                         </ListItem>
                         
@@ -335,7 +358,19 @@ function Account (props) {
 
                       </List>
                     </Drawer>
+                </div> 
+                
+                : 
+
+                <div className='headerMenu'>
+                  <Toolbar>
+                    <div className="account__close">
+                      <a href="mailto:morozov@itg-soft.by" className="account__teh button">Написать в техподдержку</a>
+                      <button className="account__exit" onClick={() => {props.onClick(false)}}>Выйти</button>
+                    </div>
+                  </Toolbar>
                 </div>
+                
               }        
 
         </div>

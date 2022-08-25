@@ -15,11 +15,13 @@ import Team from '../team';
 import Player from '../player';
 import PlayerScores from '../../screens/player-scores';
 import Audience from '../../screens/audience';
+import Season from '../../screens/season';
+
+import { requestUrl } from '../../const/const';
 
 const App = () => {
   const [valueLogin, setLogin] = useState(false);
   let userInLogin = localStorage.getItem('Login');
-  let protocol = window.location.protocol;
 
   const onSubmit = data => {
     let getLogin = data.login;
@@ -29,8 +31,7 @@ const App = () => {
     $.ajax ({
               
       type:'POST',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/authh`,
-      // url:'http://localhost:3001/auth',
+      url: `${requestUrl}/auth`,
       dataType:'json',
       data: {
         'admin': getLogin,
@@ -66,7 +67,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route path="/account">
-             <Account onClick={onClick} />
+            <Account onClick={onClick} />
           </Route>
           <Route path="/table">
             <Table />
@@ -82,6 +83,9 @@ const App = () => {
           </Route>
           <Route path="/audience">
             <Audience />
+          </Route>
+          <Route path="/season">
+            <Season />
           </Route>
           <Redirect to="/account" />
         </Switch>

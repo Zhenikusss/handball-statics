@@ -13,10 +13,6 @@ function Info (props) {
     const players = props.playersTeam;
     let tableRow = [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}];
 
-    if (players.length > 16) {
-      tableRow = players;
-    }
-
     function sumGoals (teamName) {
       const copyObject = tableInfo;
       let resultA = 0;
@@ -66,7 +62,7 @@ function Info (props) {
                     {tableRow.map((num, index) =>
 
                         <tr key={index}>
-                            <td>
+                            <td className='tableNumber'>
                                 <Controller
                                     as={
                                       <FormControl>
@@ -84,12 +80,12 @@ function Info (props) {
                                     control={control} 
                                 />
                             </td>
-                            <td>
+                            <td className='tableName'>
                                 <Controller 
                                     as={
                                       <FormControl>
                                         <TextField
-                                          select 
+                                          select
                                           label="" 
                                           value={tableInfo['teamPlayer' + (index+1) + props.team]} 
                                           name={'teamPlayer' + (index+1) + props.team} 

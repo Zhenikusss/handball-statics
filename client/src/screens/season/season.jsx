@@ -7,8 +7,8 @@ import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 
 import { requestUrl } from '../../const/const';
 
-const Team = () => {
-  const [teams, setTeams] = useState([]);
+const Season = () => {
+  const [seasons, setSeasons] = useState([]);
   const [modal, setModal] = useState({
     open: false,
     Transition: Slide,
@@ -21,33 +21,33 @@ const Team = () => {
   useEffect(() => {
     $.ajax ({      
       type:'GET',
-      url: `${requestUrl}/teams`,
+      url: `${requestUrl}/seasons`,
       dataType:'json',
       success: function(data) {
         data.map((item) => {
-          setTeams(prevState => {
+          setSeasons(prevState => {
             return [
               ...prevState, 
               {
                 id: item.id,
                 value: item.value,
-                label: item.label,
+                name: item.name,
               }
             ];
           });
         });
         setLoading({loading: false});
-        document.querySelector('.teams__block').classList.add('show');
+        document.querySelector('.seasons__block').classList.add('show');
       }
     });
   }, []);
 
-  const saveTeam = () => {
+  const saveSeason = () => {
     $.ajax ({
       type:'POST',
-      url: `${requestUrl}/teams`,
+      url: `${requestUrl}/seasons`,
       dataType:'json',
-      data: { teams },
+      data: { seasons },
       success: function() {
         setModal({
           ...modal,
@@ -66,35 +66,37 @@ const Team = () => {
     });
   };
 
-  const addTeam = () => {
-    const teamValue = document.querySelector('.teams__team input').value;
-    if (teams.length === 0) {
-      setTeams([
-        ...teams,
+  const addSeason = () => {
+    const seasonValue = document.querySelector('.seasons__season input').value;
+    const year = seasonValue.split('-')[0];
+
+    if (seasons.length === 0) {
+      setSeasons([
+        ...seasons,
         {
           id: 1,
-          value: teamValue,
-          label: teamValue,
+          value: year,
+          name: seasonValue,
         }
       ])
     } else {
-      if (teamValue != '') {
-        setTeams([
-          ...teams,
+      if (seasonValue != '') {
+        setSeasons([
+          ...seasons,
           {
-            id: teams[teams.length - 1].id + 1,
-            value: teamValue,
-            label: teamValue,
+            id: seasons[seasons.length - 1].id + 1,
+            value: year,
+            name: seasonValue,
           }
         ])
       }
     }
-    document.querySelector('.teams__team input').value = '';
+    document.querySelector('.seasons__season input').value = '';
   }
 
-  const deleteTeam = (id) => {
-    setTeams(prevState => {
-      return prevState.filter(team => team.id !== id);
+  const deleteSeason = (id) => {
+    setSeasons(prevState => {
+      return prevState.filter(season => season.id !== id);
     })
   }
 
@@ -106,35 +108,35 @@ const Team = () => {
         </div>
       </div>
 
-      <div className="teams">
+      <div className="seasons">
         <h3>
-          Список команд
+          Список сезонов
         </h3>
 
         { loading.loading && <div className="account__loading"><CircularProgress /></div> }
  
-        <List className="teams__block">  
-          {teams.map((option) => (
-            <ListItem className="teams__item" button key={option.value} value={option.value}>
+        <List className="seasons__block">  
+          {seasons.map((option) => (
+            <ListItem className="seasons__item" button key={option.value} value={option.value}>
               <ListItemText>
-                {option.value}
+                {option.name}
                 <Tooltip title='Кликните, чтобы удалить' key={option.value}>
-                  <DeleteOutlinedIcon className="teams__icon" onClick={() => deleteTeam(option.id)} />
+                  <DeleteOutlinedIcon className="seasons__icon" onClick={() => deleteSeason(option.id)} />
                 </Tooltip>
               </ListItemText>
             </ListItem>
           ))}  
         </List>
 
-        <div className="teams__save">
-          <TextField className="teams__team" label="Добавить команду" />
-          <button onClick={addTeam}>Добавить</button>
+        <div className="seasons__save">
+          <TextField className="seasons__season" label="Добавить сезон" />
+          <button onClick={addSeason}>Добавить</button>
         </div>
         
 
-        <div className="teams__buttons">    
-          <Link className="teams__link" to="/account"><button className="button teams__button teams__button--back">Назад</button></Link>
-          <button onClick={saveTeam} className="button teams__button--save">Сохранить</button>
+        <div className="seasons__buttons">    
+          <Link className="seasons__link" to="/account"><button className="button seasons__button seasons__button--back">Назад</button></Link>
+          <button onClick={saveSeason} className="button seasons__button--save">Сохранить</button>
         </div>
 
       </div>
@@ -144,11 +146,11 @@ const Team = () => {
         autoHideDuration={1500}
         onClose={handleCloseModal}
         TransitionComponent={modal.Transition}
-        message="Команды сохранены"
+        message="Сезоны сохранены"
         key={modal.Transition.name}
       />
     </Fragment>
   )
 }
 
-export default Team;
+export default Season;

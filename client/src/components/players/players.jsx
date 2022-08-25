@@ -15,7 +15,7 @@ function Players (props) {
 
             <div className = 'table-players__team'>
                 <div className = 'players-all team-1'>
-                    <div className = 'players-match tr'>
+                    <div className = 'players-match bb bt'>
                         <Match color={'green'} team = {'A'} control = {control} handleChangeInfo={handleChangeInfo} tableInfo={tableInfo} />
                     </div>
                     <div className = 'players-info'>
@@ -24,7 +24,7 @@ function Players (props) {
                 </div>
 
                <div className = 'players-all team-2'>
-                    <div className = 'players-match tr'>
+                    <div className = 'players-match bb'>
                         <Match color={'blue'} team = {'B'} control = {control} handleChangeInfo={handleChangeInfo} tableInfo={tableInfo} />
                     </div>
                     <div className = 'players-info'>
@@ -33,7 +33,7 @@ function Players (props) {
                 </div>
             </div>
             
-            <div className = 'referee-right'>
+            <div className = 'referee-right bt bb'>
                 <Referee handleChangeInfo={handleChangeInfo} tableInfo={tableInfo} control = {control} />
             </div>
         </div>

@@ -18,7 +18,7 @@ function Referee (props) {
 
         <div className = 'players-referee__spectators'>
     
-          <div className = 'tr'>
+          <div className = 'br'>
             <Controller 
               as={
                 <FormControl>
@@ -30,7 +30,7 @@ function Referee (props) {
             />
           </div>
     
-          <div className = 'tr'>
+          <div>
             <Controller 
               as={
                 <FormControl>
@@ -44,7 +44,7 @@ function Referee (props) {
     
         </div>
     
-        <div className = 'protests table__rul tr'>
+        <div className = 'protests table__rul bb bt'>
           <div>Подача протестов</div>
           <Controller
             as={
@@ -75,7 +75,7 @@ function Referee (props) {
             />
         </div>
     
-        <div className = 'players-referee__comments tr'>
+        <div className = 'players-referee__comments bb'>
           <Controller 
             as={
               <FormControl>
@@ -93,7 +93,7 @@ function Referee (props) {
             <Controller 
               as={
                 <FormControl>
-                  <TextField label="Судья 1" placeholder="Фамилия, город" name="referee1" value={tableInfo.referee1} name="referee1" onChange={(event) => handleChangeInfo(event)} />
+                  <TextField label="Судья 1" placeholder="Фамилия, город" name="referee1" value={tableInfo.referee1} onChange={(event) => handleChangeInfo(event)} />
                 </FormControl>
               }
               name="referee1" 
@@ -101,7 +101,7 @@ function Referee (props) {
             />
           </div>
     
-          <div className = 'players-referee__signature tr'>Подпись</div>
+          <div className = 'players-referee__signature bb'>Подпись</div>
     
           <div className = 'tr yellow'>
             <Controller 
@@ -114,7 +114,7 @@ function Referee (props) {
               control={control} 
             />
           </div>
-          <div className = 'players-referee__signature tr'>Подпись</div>
+          <div className = 'players-referee__signature bb'>Подпись</div>
     
           <div className = 'tr yellow'>
             <Controller 
@@ -128,7 +128,7 @@ function Referee (props) {
             />
           </div>
     
-          <div className = 'players-referee__signature tr'>Подпись</div>
+          <div className = 'players-referee__signature bb'>Подпись</div>
     
           <div className = 'tr yellow'>
             <Controller 
@@ -141,7 +141,7 @@ function Referee (props) {
               control={control} 
             />
           </div>
-          <div className = 'players-referee__signature tr'>Подпись</div>
+          <div className = 'players-referee__signature'>Подпись</div>
     
         </div>
     
