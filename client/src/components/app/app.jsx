@@ -31,7 +31,7 @@ const App = () => {
     $.ajax ({
               
       type:'POST',
-      url: `${requestUrl}/auth`,
+      url: `${requestUrl}/authh`,
       dataType:'json',
       data: {
         'admin': getLogin,

@@ -1,51 +1,22 @@
 const getDataForTable = (players, data) => {
   const arrPlayers = [];
 
-  if (data.length > players.length) {
-    players.forEach((p, index) => {
-      let allGoals = 0;
-      let allGames = 0;
-    
-      data.forEach((ds) => {
-        if (p.name === ds.player) {
-          allGoals = allGoals + Number(ds.countGoals);
-          allGames = ++allGames;
-        }
-      });
+  data.forEach((p, index) => {
+    let allGoals = 0;
+    let allGames = 0;
   
-      let allGoalsInMatch = (allGoals / allGames).toFixed(1);
-  
-      if (allGoalsInMatch == '0.0' || isNaN(allGoalsInMatch)) {
-        allGoalsInMatch = 0;
+    players.forEach((ds) => {
+      if (ds.name === p.player) {
+        allGoals = allGoals + Number(p.countGoals);
+        allGames = ++allGames;
       }
-  
-      const newObjPlayer = {
-        name: p.name,
-        team: p.team,
-        score: allGoals,
-        games: allGames,
-        middleScore: Number(allGoalsInMatch),
-      }
-  
-      arrPlayers.push(newObjPlayer);
     });
-  } else if (data.length < players.length) {
-    data.forEach((p, index) => {
-      let allGoals = 0;
-      let allGames = 0;
-    
-      players.forEach((ds) => {
-        if (ds.name === p.player) {
-          allGoals = allGoals + Number(p.countGoals);
-          allGames = ++allGames;
-        }
-      });
   
-      let allGoalsInMatch = (allGoals / allGames).toFixed(1);
+    let allGoalsInMatch = (allGoals / allGames).toFixed(1);
   
-      if (allGoalsInMatch == '0.0' || isNaN(allGoalsInMatch)) {
-        allGoalsInMatch = 0;
-      }
+    if (allGoalsInMatch == '0.0' || isNaN(allGoalsInMatch)) {
+      allGoalsInMatch = 0;
+    }
   
       const newObjPlayer = {
         name: p.player,
@@ -56,10 +27,51 @@ const getDataForTable = (players, data) => {
       }
   
       arrPlayers.push(newObjPlayer);
-    });
-  }
+  });
 
-  arrPlayers.sort((a, b) => {
+  const arrFinish = [];
+  const arrAllPlayers = [];
+
+  arrPlayers.forEach((item) => {
+    arrAllPlayers.push(item.name);
+  });
+
+  const arrPlayersUnique = arrAllPlayers.filter((item, pos) => {
+    return arrAllPlayers.indexOf(item) === pos;
+  })
+
+  arrPlayersUnique.forEach((item1) => {
+    let allGoals = 0;
+    let allGames = 0;
+    let name = item1;
+    let team = '';
+
+    arrPlayers.forEach((item2) => {
+      if (name === item2.name) {
+        allGoals = allGoals + item2.score;
+        allGames = allGames + item2.games;
+        team = item2.team;
+      }
+    })
+
+    let allGoalsInMatch = (allGoals / allGames).toFixed(1);
+  
+    if (allGoalsInMatch == '0.0' || isNaN(allGoalsInMatch)) {
+      allGoalsInMatch = 0;
+    }
+
+    const newObjPlayer = {
+      name: name,
+      team: team,
+      score: allGoals,
+      games: allGames,
+      middleScore: Number(allGoalsInMatch),
+    }
+
+    arrFinish.push(newObjPlayer);
+  })
+
+  arrFinish.sort((a, b) => {
     if (a.score < b.score) {
         return 1;
     } else if (a.score > b.score) {
@@ -69,11 +81,11 @@ const getDataForTable = (players, data) => {
     }
   });
 
-  arrPlayers.map((item, idx) => {
+  arrFinish.map((item, idx) => {
     item.place = idx + 1;
   });
 
-  return arrPlayers;
+  return arrFinish;
 };
 
 export default getDataForTable;
