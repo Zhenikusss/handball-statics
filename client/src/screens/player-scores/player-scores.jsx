@@ -18,6 +18,8 @@ import Header from '../../components/header';
 import SelectorMatches from '../../components/selector-matches/selectorMatches';
 import { selectedPlayers } from './const';
 
+import { requestUrl } from '../../const/const';
+
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
@@ -55,15 +57,14 @@ const PlayerScores = () => {
   const [data, setData] = useState([]);
   const [dataForTable, setDataForTable] = useState([]);
   const [showLoader, setShowLoader] = useState(false);
+  const [dataSelected, setDataSelected] = useState(selectedPlayers);
 
   const [selected, setSelected] = useState({
     season: '',
     tournament: '',
     gender: '',
-    // division: '',
+    division: '',
   });
-
-  const protocol = window.location.protocol;
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -89,8 +90,7 @@ const PlayerScores = () => {
 
     $.ajax ({
       type:'POST',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/statistic-score`,
-      // url:'http://localhost:3001/statistic-score',
+      url: `${requestUrl}/statistic-score`,
       dataType:'json',
       data: { params: selected },
       success: function(data) {
@@ -104,8 +104,7 @@ const PlayerScores = () => {
   
     $.ajax ({
       type:'GET',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/statistic-score`,
-      // url:'http://localhost:3001/statistic-score',
+      url: `${requestUrl}/statistic-score`,
       dataType:'json',
       success: function(data) {
         setData(data);
@@ -114,11 +113,27 @@ const PlayerScores = () => {
 
     $.ajax ({
       type:'GET',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/players`,
-      // url:'http://localhost:3001/players',
+      url: `${requestUrl}/players`,
       dataType:'json',
       success: function(players) {
         setPlayers(players);
+      }
+    });
+
+    $.ajax ({      
+      type:'GET',
+      url: `${requestUrl}/seasons`,
+      dataType:'json',
+      success: function(data) {
+        setDataSelected(prevState => {
+          return [
+            {
+              title: {value: 'season', name: 'Сезон'},
+              options: data,
+            },
+            ...prevState,
+          ];
+        });
       }
     });
   
@@ -128,13 +143,13 @@ const PlayerScores = () => {
     setDataForTable(getDataForTable(players, data));
   }, [data, players]);
 
-  useEffect(() => {
-    if (!dataForTable.length) {
-      setShowLoader(true);
-    } else {
-      setShowLoader(false);
-    }
-  }, [dataForTable]);
+  // useEffect(() => {
+  //   if (!dataForTable.length) {
+  //     setShowLoader(true);
+  //   } else {
+  //     setShowLoader(false);
+  //   }
+  // }, [dataForTable]);
 
   return (
     <Fragment>
@@ -147,7 +162,7 @@ const PlayerScores = () => {
         </Link>
 
         <div className='selector'>
-          {selectedPlayers.map((item, i) => {
+          {dataSelected.map((item, i) => {
             return (
               <div key={i} className='selector__block'>
                 <SelectorMatches title={item.title} options={item.options} onPress={handleSelectPress} />
@@ -164,51 +179,53 @@ const PlayerScores = () => {
           </div>
           
         :
-          <Paper className={classes.paper}>
-            <TableContainer>
-              <Table
-                className={classes.table}
-                aria-labelledby="tableTitle"
-                size={'medium'}
-                aria-label="enhanced table"
-              >
-                <HeaderTable
-                  classes={classes}
-                  numSelected={0}
-                  order={order}
-                  orderBy={orderBy}
-                  onRequestSort={handleRequestSort}
-                  rowCount={dataForTable.length}
-                />
-                <TableBody>
-                  {stableSort(dataForTable, getComparator(order, orderBy))
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row, index) => {                    
-                      return (
-                        <TableRow
-                          hover
-                          key={index}
-                        >
-                          <TableCell align="left">{row.place}</TableCell>
-                          <TableCell align="left">{row.name}</TableCell>
-                          <TableCell align="left">{row.team}</TableCell>
-                          <TableCell align="left">{row.score}</TableCell>
-                          <TableCell align="left">{row.games}</TableCell>
-                          <TableCell align="left">{row.middleScore}</TableCell>
-                        </TableRow>
-                      );
-                    })}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <TablePagination
-              component="div"
-              count={dataForTable.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onChangePage={handleChangePage}
-            />
-          </Paper>
+          !dataForTable.length ? 'Ничего не найдено' :
+
+            <Paper className={classes.paper}>
+              <TableContainer>
+                <Table
+                  className={classes.table}
+                  aria-labelledby="tableTitle"
+                  size={'medium'}
+                  aria-label="enhanced table"
+                >
+                  <HeaderTable
+                    classes={classes}
+                    numSelected={0}
+                    order={order}
+                    orderBy={orderBy}
+                    onRequestSort={handleRequestSort}
+                    rowCount={dataForTable.length}
+                  />
+                  <TableBody>
+                    {stableSort(dataForTable, getComparator(order, orderBy))
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((row, index) => {                    
+                        return (
+                          <TableRow
+                            hover
+                            key={index}
+                          >
+                            <TableCell align="left">{row.place}</TableCell>
+                            <TableCell align="left">{row.name}</TableCell>
+                            <TableCell align="left">{row.team}</TableCell>
+                            <TableCell align="left">{row.score}</TableCell>
+                            <TableCell align="left">{row.games}</TableCell>
+                            <TableCell align="left">{row.middleScore}</TableCell>
+                          </TableRow>
+                        );
+                      })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              <TablePagination
+                component="div"
+                count={dataForTable.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onChangePage={handleChangePage}
+              />
+            </Paper>
         }
 
         

@@ -69,8 +69,17 @@
     font-weight: bold;
     font-size: 1.5rem;
 }
-.tr {
-    border: 1px solid;
+.br {
+    border-right: 1px solid;
+}
+.bl {
+    border-left: 1px solid;
+}
+.bt {
+    border-top: 1px solid;
+}
+.bb {
+    border-bottom: 1px solid;
 }
 .table__tournament {
     width: 100%;
@@ -116,7 +125,7 @@
 .team__item .team__title-A,
 .team__item .team__title-B {
     padding: 1rem;
-    border-right: 1px solid;
+    // border-right: 1px solid;
 }
 .info-match {
     &__city {
@@ -186,14 +195,39 @@
     opacity: 0.4;
 }
 
+td.tableName {
+    width: 100px;
+}
+
+label + .MuiInput-formControl {
+    margin-top: 40px !important;
+}
+
 @media print {
-    .account__func_table {display: none;}
-    @page {
-        margin: 2mm;
-        margin-bottom: 0mm;
-        margin-top: 5mm;
+    .account__func_table,
+    .MuiInput-underline:before,
+    .MuiSelect-icon,
+    .MuiFormHelperText-root {
+        display: none !important;
     }
-    html { zoom: 63%; }
+    @page {
+        margin: 10mm;
+        margin-bottom: 0mm;
+        margin-top: 15mm;
+    }
+    .MuiInputBase-input {
+        padding: 0 !important;
+    }
+    .info-players__table td {
+        padding: 0px;
+        padding-left: 5px;
+    }
+
+    label + .MuiInput-formControl {
+        margin-top: 16px !important;
+    }
+
+    html { zoom: 65%; }
 
     *,
     *:before,

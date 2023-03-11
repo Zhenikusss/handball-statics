@@ -15,7 +15,7 @@ function Match (props) {
         
         <div className = 'players-match__block'>
 
-            <div className = 'tr'>
+            <div>
               Командный тайм-аут
               <Controller 
                 as={
@@ -45,7 +45,7 @@ function Match (props) {
                 control={control} 
               />
             </div>
-            <div className = 'tr'>
+            <div className = 'bb bt'>
               <Controller 
                 as={
                   <FormControl>

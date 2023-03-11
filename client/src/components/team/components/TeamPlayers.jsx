@@ -1,8 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import logo from '../../../assets/img/logo.svg';
 
-import { StringPlayer } from '../components';
-
 const TeamPlayers = ({  }) => {
   const [players, setPlayers] = useState([
     {
@@ -35,8 +33,6 @@ const TeamPlayers = ({  }) => {
             <span>Команда</span>
             <span>Действие</span>
           </div>
-
-          <StringPlayer />
 
         </div>
       </div>

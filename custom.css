@@ -1,67 +1,125 @@
 @media(max-width: 1439px) {
 	.account,
-	.teams {
+	.teams,
+	.seasons,
+	.jss1,
+	.jss13,
+	.jss6 {
 		max-width: 1000px;
+		margin: 0 auto;
 	}
-	.account__block {
-		grid-template-columns: 1fr 1fr 1fr;
-		grid-gap: 20px;
+	.teams__item.MuiListItem-button {
+		width: 33%;
+	}
+	.selector {
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+	.selector__block {
+    	width: 23%;
+    	padding-right: 0px; 
+     	padding-left: 0px; 
+	}
+	.selector .selector__btn {
+		width: 100%;
+    	margin-top: 30px;
+    	padding: 10px;
 	}
 }
 
 @media(max-width: 1039px) {
-	.account,
-	.teams {
+	.account, .teams, .seasons, .jss1, .jss13, .jss6 {
 		max-width: 660px;
 	}
-	.account__block {
-		grid-template-columns: 1fr 1fr;
+	.account__block a {
+		padding-right: 70px;
+   		line-height: 30px;
+   		height: 80px;
+   		align-items: center;
+    	display: flex;
 	}
-	.account__func button {
-		padding: 7px 10px;
-		width: auto;
-		font-size: 14px;
-	}
-	.account__exit, 
-	.account__teh {
-		font-size: 14px;
-		padding: 7px 10px;
+	.seasons__item.MuiListItem-button {
+		width: 33%;
 	}
 	.teams__item.MuiListItem-button {
-		width: 50%;
+    	width: 50%;
+	}
+	.player__str span {
+		padding: 5px;
 	}
 }
 
-@media(max-width: 699px) {
+@media(max-width: 730px) {
 	.account,
-	.teams {
-		max-width: 320px;
+	.teams,
+	.seasons,
+	.jss1,
+	.jss13,
+	.jss6 {
+		max-width: 310px;
 	}
-	.account__block {
-		grid-template-columns: 1fr;
-	}
-	.account__func {
-		flex-wrap: wrap;
-	}
-	.account__func button,
-	.account__save--team,
-	.account__func a,
-	.account__close {
+	.selector__block {
 		width: 100%;
-		flex-wrap: wrap;
-		text-align: center;
-		border-radius: 0;
-    	margin-bottom: 5px;
+		/*margin: 0;*/
 	}
-	.account__save--team a:last-child,
-	.account__close button,
-	.account__func button {
+	.selector {
 		margin: 0;
+		margin-bottom: 50px;
 	}
-	.account__close {
-		margin-top: 15px;
+	.headerMenu {
+		margin-bottom: 20px;
+	}
+	.account__block a {
+		font-size: 16px;
+		line-height: 20px;
+	}
+	.seasons__item.MuiListItem-button {
+		width: 100%;
+	}
+	.seasons__save,
+	.teams__save {
+		flex-wrap: wrap;
+    	margin-bottom: 20px;
+    	margin-top: 0;
+	}
+	.seasons__save button,
+	.teams__save button {
+		width: 100%;
+    	margin: 0;
+    	margin-top: 20px;
+	}
+	.seasons__save > div,
+	.teams__save > div {
+		width: 100%;
+	}
+
+	.headerMenu .account__close {
+		position: initial;
+		flex-wrap: wrap;
+	}
+	.headerMenu .MuiToolbar-root {
+		flex-wrap:  wrap;
+		justify-content: center;
+	}
+	.account__exit, .account__teh,
+	.account__close button {
+		width: 100%;
+    	margin: 0;
+    	padding: 10px;
+    	text-align: center;
+    	margin-bottom: 10px;
+    	border-radius: 0;
+    	font-size: 14px;
 	}
 	.teams__item.MuiListItem-button {
-    	width: 100%;
+		width: 100%;
+	}
+	.player__str span {
+	    padding: 2px;
+	    font-size: 12px;
+	}
+	.teams .player__str .player__number {
+		/*width: 14px;
+    	min-width: 14px;*/
 	}
 }

@@ -18,6 +18,8 @@ import Players from '../players';
 // import { team } from '../defaultValues';
 import Popup from '../popup-window/index';
 
+import { requestUrl } from '../../const/const';
+
 const useUnload = fn => {
   const cb = useRef(fn);
 
@@ -38,6 +40,7 @@ function Table () {
     city: '',
     date: '',
     gender: '',
+    division: '',
     id: '',
     place: '',
     resultGame30A: '',
@@ -463,7 +466,6 @@ function Table () {
   const teamA = tableInfo.teamA;
   const teamB = tableInfo.teamB;
 
-  let protocol = window.location.protocol;
   let pathHash = window.location.hash.match(/\d+/g);
   if (pathHash != null) {
     pathHash = pathHash.join([]);
@@ -532,7 +534,7 @@ function Table () {
     }));
   }
 
-  const printTable = (e) => {
+  const printTable = () => {
     window.print()
   }
 
@@ -540,8 +542,7 @@ function Table () {
     const popupWindow = document.querySelector('.popup-window');
     $.ajax ({
       type:'POST',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/data`,
-      // url:'http://localhost:3001/data',
+      url: `${requestUrl}/data`,
       dataType:'json',
       data: { tableInfo, pathHash },
       success: function() {
@@ -561,8 +562,7 @@ function Table () {
   useEffect(() => {
     $.ajax ({      
       type:'GET',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/data`,
-      // url:'http://localhost:3001/data',
+      url: `${requestUrl}/data`,
       dataType:'json',
       data: pathHash,
       success: function(data) {
@@ -577,8 +577,7 @@ function Table () {
 
     $.ajax ({      
       type:'GET',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/teams`,
-      // url:'http://localhost:3001/teams',
+      url: `${requestUrl}/teams`,
       dataType:'json',
       success: function(data) {
         setTeam(data);
@@ -589,8 +588,7 @@ function Table () {
   useEffect(() => {
     $.ajax ({   
       type:'GET',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/players?team=${teamA}`,
-      // url:`http://localhost:3001/players?team=${teamA}`,
+      url: `${requestUrl}/players?team=${teamA}`,
       dataType:'json',
       success: function(data) {
         setPlayersA(data)
@@ -599,8 +597,7 @@ function Table () {
 
     $.ajax ({   
       type:'GET',
-      url:`${protocol}//handball.devitgso.iron.hostflyby.net/players?team=${teamB}`,
-      // url:`http://localhost:3001/players?team=${teamB}`,
+      url: `${requestUrl}/players?team=${teamB}`,
       dataType:'json',
       success: function(data) {
         setPlayersB(data)
@@ -615,7 +612,6 @@ function Table () {
 
   return (
     <div>
-
         <form onSubmit={handleSubmit(onSubmit)} className="table">
 
           <div className = 'table__title'>Белорусская федерация гандбола</div>
@@ -626,15 +622,15 @@ function Table () {
           </div>
 
           
-          <div className="table__block">
+          <div className="table__block bt br bl">
 
-            <div className = 'table__row'>
-              <div className = 'table__rang tr yellow'>Ранг матча</div>
+            <div className = 'table__row bb'>
+              <div className = 'table__rang br yellow'>Ранг матча</div>
               <div className = 'table__protocol'>
-                  <div className = 'table__row'>
+                  <div className = 'table__row bb'>
 
 
-                    <section className = 'table__rul table__gender tr'>
+                    <section className = 'table__rul table__gender br'>
 
                     <Controller
                       as={
@@ -667,13 +663,13 @@ function Table () {
                     </section>
 
 
-                    <div className = 'table__prot tr yellow'>Протокол матча</div>
+                    <div className = 'table__prot yellow'>Протокол матча</div>
                      
                   </div>
 
                   <div className = 'table__row'>
 
-                  <section className = 'table__rul table__tournament tr'>
+                  <section className = 'table__rul table__tournament'>
 
                   <Controller
                       as={
@@ -712,7 +708,39 @@ function Table () {
 
                   </section>
 
-                  <section className = 'table__rul table__tournament tr'>
+                  <section className = 'table__rul table__tournament br bl'>
+
+                  <Controller
+                      as={
+                      <FormControl>
+                        <RadioGroup value={tableInfo.division} aria-label="tournament-division" name="division" onChange={(event) => handleChangeInfo(event)}>
+
+                         <div className = 'tournament__division1'>
+                          <FormControlLabel
+                            value="division1"
+                            control={<Radio />}
+                            label="Дивизион 1"
+                          />
+                         </div>
+
+                         <div className = 'tournament__division2'>
+                          <FormControlLabel
+                            value="division2"
+                            control={<Radio />}
+                            label="Дивизион 2"
+                          />
+                         </div>
+
+                        </RadioGroup>
+                      </FormControl>
+                      }
+                        name="division"
+                        control={control}
+                    />
+
+                  </section>
+
+                  <section className = 'table__rul table__tournament'>
 
                   <Controller
                       as={
@@ -767,13 +795,13 @@ function Table () {
 
             </div>
 
-            <div className = 'table__row'>
+            <div className = 'table__row bb'>
               <div className = 'team'>
-                <div className = 'team__item team__home'>
+                <div className = 'team__item team__home br'>
 
-                  <div className = 'table__row tr team__title green'>Хозяева</div>
-                  <div className = 'table__row tr'>
-                    <div className = 'team__title-A green'>A</div>
+                  <div className = 'table__row bb team__title green'>Хозяева</div>
+                  <div className = 'table__row'>
+                    <div className = 'team__title-A green br'>A</div>
                     <div className = 'team__name'>
 
                     <Controller
@@ -799,11 +827,11 @@ function Table () {
                   </div>
                     
                 </div>
-                <div className = 'team__item team__guest'>
+                <div className = 'team__item team__guest br'>
                     
-                <div className = 'table__row tr team__title blue'>Гости</div>
-                  <div className = 'table__row tr'>
-                    <div className = 'team__title-B blue'>Б</div>
+                <div className = 'table__row bb team__title blue'>Гости</div>
+                  <div className = 'table__row'>
+                    <div className = 'team__title-B blue br'>Б</div>
                     <div className = 'team__name'>
                     
                     <Controller
@@ -830,10 +858,10 @@ function Table () {
 
                 </div>
               </div>
-              <div className = 'result tr'>
+              <div className = 'result'>
 
                 <div className = 'result__title'>Финальный результат</div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team br bl'>
                   <Controller 
                     as={
                       <FormControl>
@@ -844,7 +872,7 @@ function Table () {
                     control={control} 
                   />
                 </div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team'>
                   <Controller 
                     as={
                       <FormControl>
@@ -859,11 +887,11 @@ function Table () {
               </div>
             </div>
 
-            <div className = 'table__row result__time'>
+            <div className = 'table__row result__time bb'>
 
-              <div className = 'result tr'>
+              <div className = 'result br'>
                 <div className = 'result__title yellow'>После 1 тайма (30`)</div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team br bl'>
                   <Controller 
                     as={
                       <FormControl>
@@ -874,7 +902,7 @@ function Table () {
                     control={control} 
                   />
                 </div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team'>
                   <Controller 
                     as={
                       <FormControl>
@@ -887,9 +915,9 @@ function Table () {
                 </div>
               </div>
 
-              <div className = 'result tr'>
+              <div className = 'result br'>
                 <div className = 'result__title yellow'>После основного времени (60`)</div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team br bl'>
                   <Controller 
                     as={
                       <FormControl>
@@ -900,7 +928,7 @@ function Table () {
                     control={control} 
                   />
                 </div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team'>
                   <Controller 
                     as={
                       <FormControl>
@@ -913,9 +941,9 @@ function Table () {
                 </div>
               </div>
 
-              <div className = 'result tr'>
+              <div className = 'result br'>
                 <div className = 'result__title yellow'>1 доп. время</div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team br bl'>
                   <Controller 
                     as={
                       <FormControl>
@@ -926,7 +954,7 @@ function Table () {
                     control={control} 
                   />
                 </div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team'>
                   <Controller 
                     as={
                       <FormControl>
@@ -939,9 +967,9 @@ function Table () {
                 </div>
               </div>
 
-              <div className = 'result tr'>
+              <div className = 'result br'>
                 <div className = 'result__title yellow'>2 доп. время</div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team br bl'>
                   <Controller 
                     as={
                       <FormControl>
@@ -952,7 +980,7 @@ function Table () {
                     control={control} 
                   />
                 </div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team'>
                   <Controller 
                     as={
                       <FormControl>
@@ -965,9 +993,9 @@ function Table () {
                 </div>
               </div>
 
-              <div className = 'result tr'>
+              <div className = 'result'>
                 <div className = 'result__title yellow'>После 7м бросков</div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team br bl'>
                   <Controller 
                     as={
                       <FormControl>
@@ -978,7 +1006,7 @@ function Table () {
                     control={control} 
                   />
                 </div>
-                <div className = 'result__team tr'>
+                <div className = 'result__team'>
                   <Controller 
                     as={
                       <FormControl>
@@ -993,8 +1021,8 @@ function Table () {
 
             </div>
 
-            <div className = 'table__row info-match'>
-              <div className = 'info-match__item info-match__city tr'>
+            <div className = {tableCreate ? 'table__row info-match bb' : 'table__row info-match'}>
+              <div className = 'info-match__item info-match__city br'>
                 <Controller 
                   as={
                     <FormControl>
@@ -1005,7 +1033,7 @@ function Table () {
                   control={control} 
                 />
               </div>
-              <div className = 'info-match__item info-match__place tr'>
+              <div className = 'info-match__item info-match__place br'>
                 <Controller 
                   as={
                     <FormControl>
@@ -1017,7 +1045,7 @@ function Table () {
                 />
               </div>
 
-              <div className = 'info-match__item info-match__date tr'>
+              <div className = 'info-match__item info-match__date br'>
                   <Controller
                     as={
                       <FormControl>
@@ -1036,7 +1064,7 @@ function Table () {
                   />
               </div>
 
-              <div className = 'info-match__item info-match__time tr'>
+              <div className = 'info-match__item info-match__time'>
                   <Controller
                     as={
                       <FormControl>
@@ -1067,7 +1095,7 @@ function Table () {
             
               tableInfo.edit === 1 ?
                   <Fragment>
-                    <div className="btn-save" onClick={() => window.print()}>Печать</div>
+                    <div className="btn-save" onClick={printTable}>Печать</div>
                     <Link to="/account"><button className="button">Назад</button></Link>
                   </Fragment>
                 : 
@@ -1092,7 +1120,7 @@ function Table () {
                       />
                     </div>
                     <button className="button">Сохранить</button>
-                    <div className="btn-save" onClick={() => window.print()}>Печать</div>
+                    <div className="btn-save" onClick={printTable}>Печать</div>
                     <Link to="/account"><button className="button">Назад</button></Link>
                   </Fragment>
               :

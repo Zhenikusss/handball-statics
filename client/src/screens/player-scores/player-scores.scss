@@ -21,10 +21,11 @@
 }
 
 .MuiIconButton-root {
-  color: rgba(0, 0, 0, 0.54) !important;
-  padding: 12px !important;
   border-radius: 50% !important;
   background: #fff !important;
+}
+.headerMenu .MuiIconButton-root {
+  color: rgba(0, 0, 0, 0.54) !important;
 }
 
 .progress-table {
