@@ -1125,6 +1125,25 @@ function Table () {
                   </Fragment>
               :
               <Fragment>
+                <div className="checkbox-table">
+                  <Controller as={
+                      <FormControl>
+                        <FormControlLabel
+                          label="Сохранить с подачей?"
+                          control={
+                            <Checkbox
+                              checked={Boolean(tableInfo.edit)}
+                              onChange={(event) => {handleChangeCheckBox(event)}}
+                              name="edit" 
+                            />
+                          }
+                        />
+                      </FormControl>
+                    }
+                    control={control}
+                    name="edit"
+                  />
+                </div>
                 <button className="button">Сохранить</button>
                 <div className="btn-save" onClick={printTable}>Печать</div>
                 <Link to="/account"><button className="button">Назад</button></Link>

@@ -30,7 +30,7 @@ router.get('/', function(req, res) {
 
   const sqlData = `SELECT id, teamA, teamB, date, time, tournament, division,
     gender, resultGameA, resultGameB, resultGame30A, 
-    resultGame30B FROM info_table`;
+    resultGame30B, edit FROM info_table`;
 
   sql.query(sqlData, function (err, result) {
     if (!!tournament) {
@@ -85,7 +85,7 @@ router.post('/', function(req, res) {
 
     const sqlData = `SELECT id, teamA, teamB, date, time, tournament, division,
       gender, resultGameA, resultGameB, resultGame30A, 
-      resultGame30B FROM info_table`;
+      resultGame30B, edit FROM info_table`;
 
     sql.query(sqlData, function (err, result) {
       if (!!tournament) {
