@@ -5,8 +5,8 @@ const getDataForTable = (players, data) => {
     let allGoals = 0;
     let allGames = 0;
   
-    players.forEach((ds) => {
-      if (ds.name === p.player) {
+    players.forEach((ds) => {  
+      if (ds.name === p.player && ds.team === p.team) {
         allGoals = allGoals + Number(p.countGoals);
         allGames = ++allGames;
       }
@@ -44,13 +44,13 @@ const getDataForTable = (players, data) => {
     let allGoals = 0;
     let allGames = 0;
     let name = item1;
-    let team = '';
+    let teams = [];
 
     arrPlayers.forEach((item2) => {
       if (name === item2.name) {
         allGoals = allGoals + item2.score;
         allGames = allGames + item2.games;
-        team = item2.team;
+        teams.push(item2.team);
       }
     })
 
@@ -60,9 +60,13 @@ const getDataForTable = (players, data) => {
       allGoalsInMatch = 0;
     }
 
+    const arrTeamsUnique = teams.filter((item, pos) => {
+      return teams.indexOf(item) === pos;
+    }).join(', ')
+
     const newObjPlayer = {
       name: name,
-      team: team,
+      team: arrTeamsUnique,
       score: allGoals,
       games: allGames,
       middleScore: Number(allGoalsInMatch),

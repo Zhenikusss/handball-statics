@@ -12,7 +12,6 @@ const teamsRouter = require('./routes/teams');
 const seasonsRouter = require('./routes/seasons');
 const playersRouter = require('./routes/players');
 const statisticScore = require('./routes/statistic-score');
-const statisticGoals = require('./routes/statistic-goals');
 const audiences = require('./routes/audiences');
 
 const app = express();
@@ -38,7 +37,6 @@ app.use('/teams', teamsRouter);
 app.use('/seasons', seasonsRouter);
 app.use('/players', playersRouter);
 app.use('/statistic-score', statisticScore);
-app.use('/statistic-goals', statisticGoals);
 app.use('/audiences', audiences);
 
 app.get('/*', (req, res) => {

@@ -90,17 +90,12 @@ function Account (props) {
   }
 
   const date = new Date();
-  let today = `${date.getFullYear()}-${toLead(date.getMonth(), 'month')}-${toLead(date.getDate(), 'date')}`;
+  let today = `${date.getFullYear()}-${toLead(date.getMonth() + 1, 'month')}-${toLead(date.getDate(), 'date')}`;
 
   function toLead(leadDate, type) {
     leadDate = leadDate.toString().split('-');
     if (leadDate < 10) {
-      if (type === 'month') {
-        leadDate = Number(leadDate) + 1;
         leadDate = `0${leadDate}`;
-      } else {
-        leadDate = `0${leadDate}`;
-      }
     }
     return leadDate.toString();
   }
